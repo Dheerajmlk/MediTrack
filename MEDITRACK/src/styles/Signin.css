@@ -1,4 +1,4 @@
-.login-container {
+.signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
     padding: 1.5rem;
   }
   
-  .login-form {
+  .signup-form {
     width: 100%;
     max-width: 420px;
     background-color: white;
@@ -17,12 +17,12 @@
     transition: all 0.3s ease;
   }
   
-  .login-form:hover {
+  .signup-form:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1);
   }
   
-  .login-form h2 {
+  .signup-form h2 {
     font-size: 2rem;
     font-weight: 700;
     color: #1e40af;
@@ -53,7 +53,7 @@
     color: #9ca3af;
   }
   
-  .login-button {
+  .signup-button {
     display: block;
     width: 100%;
     padding: 0.875rem;
@@ -68,12 +68,12 @@
     margin-top: 1.5rem;
   }
   
-  .login-button:hover {
+  .signup-button:hover {
     background-color: #1d4ed8;
     transform: translateY(-2px);
   }
   
-  .login-button:active {
+  .signup-button:active {
     transform: translateY(0);
   }
   
@@ -108,11 +108,11 @@
   
   /* Responsive adjustments */
   @media (max-width: 480px) {
-    .login-form {
+    .signup-form {
       padding: 1.5rem;
     }
     
-    .login-form h2 {
+    .signup-form h2 {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
     }
