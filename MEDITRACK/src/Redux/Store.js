@@ -1,7 +1,11 @@
-import { legacy_createStore, applyMiddleware } from "redux";
-import {thunk} from "redux-thunk"; // ✅ Correct way to import thunk
+import { legacy_createStore, applyMiddleware, combineReducers } from "redux";
+import {thunk} from "redux-thunk"; // ✅ Fixed import
 import authReducer from "./Auth";
 
-const store = legacy_createStore(authReducer, applyMiddleware(thunk));
+const rootReducer = combineReducers({
+  auth: authReducer,
+});
+
+const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;

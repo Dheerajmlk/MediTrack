@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../Redux/Auth";
 
-const SignUp = () => {
+const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const error = useSelector((state) => state.auth.error);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignUp = (e) => {
     e.preventDefault();
     dispatch(signUp({ email, password }));
-    navigate("/login");
+    navigate("/dashboard"); // ✅ Redirect to Dashboard after sign-up
   };
 
   return (
@@ -23,9 +24,10 @@ const SignUp = () => {
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         <button type="submit">Sign Up</button>
       </form>
+      {error && <p>{error}</p>}
       <p>Already have an account? <a href="/login">Login</a></p>
     </div>
   );
 };
 
-export default SignUp;
+export default Signin;

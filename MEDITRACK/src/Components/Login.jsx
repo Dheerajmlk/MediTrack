@@ -6,14 +6,14 @@ import { login } from "../Redux/Auth";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error } = useSelector((state) => state);
+  const error = useSelector((state) => state.auth.error);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
-    navigate("/dashboard"); // Redirect to Dashboard after login
+    dispatch(login({ email, password }));
+    navigate("/dashboard"); // ✅ Redirect to Dashboard after login
   };
 
   return (
@@ -25,7 +25,7 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       {error && <p>{error}</p>}
-      <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+      <p>Don't have an account? <a href="/signin">Sign Up</a></p>
     </div>
   );
 };

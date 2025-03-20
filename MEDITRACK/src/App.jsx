@@ -2,19 +2,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { Provider, useSelector } from "react-redux";
 import store from "./Redux/Store";
 import Signin from "./Components/Signin";
-import Auth from "./Components/Auth";
+import Login from "./Components/Login"; // ✅ Use Login.jsx instead of Auth.jsx
 import Dashboard from "./Components/Dashboard";
 
-
+// Protect the dashboard (redirect to /login if not logged in)
 const PrivateRoute = ({ element }) => {
-  const user = useSelector((state) => state.user);
-  return user ? element : <Navigate to="/auth" />;
-};
-
-
-const HomeRedirect = () => {
-  const user = useSelector((state) => state.user);
-  return user ? <Navigate to="/dashboard" /> : <Navigate to="/auth" />;
+  const user = useSelector((state) => state.auth.user);
+  return user ? element : <Navigate to="/login" />;
 };
 
 function App() {
@@ -22,11 +16,10 @@ function App() {
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/" element={<HomeRedirect />} /> 
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/login" element={<Login />} /> {/* ✅ Replaced /auth with /login */}
           <Route path="/signin" element={<Signin />} />
           <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
-          <Route path="*" element={<Navigate to="/" />} /> 
+          <Route path="*" element={<Navigate to="/login" />} /> {/* ✅ Default redirect */}
         </Routes>
       </Router>
     </Provider>

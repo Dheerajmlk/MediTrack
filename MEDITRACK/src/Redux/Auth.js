@@ -14,13 +14,13 @@ const LOGIN = "LOGIN";
 const SET_ERROR = "SET_ERROR";
 const LOGOUT = "LOGOUT";
 
-// Reducer Function
-const authReducer = (state = initialState, action) => {
+// Reducer
+const authReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SIGN_UP:
-      return { ...state, user: action.payload, error: null };
+      return { ...state, user: action.payload ?? null, error: null };
     case LOGIN:
-      return { ...state, user: action.payload, error: null };
+      return { ...state, user: action.payload ?? null, error: null };
     case SET_ERROR:
       return { ...state, error: action.payload };
     case LOGOUT:
@@ -31,16 +31,16 @@ const authReducer = (state = initialState, action) => {
 };
 
 // Action Creators
-export const signUp = (user) => {
+export const signUp = ({ email, password }) => {
   return (dispatch) => {
     axios
-      .post(firebaseURL, user)
-      .then(() => dispatch({ type: SIGN_UP, payload: user }))
+      .post(firebaseURL, { email, password })
+      .then(() => dispatch({ type: SIGN_UP, payload: { email } }))
       .catch(() => dispatch({ type: SET_ERROR, payload: "Sign-up failed" }));
   };
 };
 
-export const login = (email, password) => {
+export const login = ({ email, password }) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(firebaseURL);
