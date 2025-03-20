@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../Redux/Auth";
-import "../styles/Signin.css"
+import "../styles/Signin.css"; // ✅ Ensure CSS is imported
 
 const Signin = () => {
     const dispatch = useDispatch();
@@ -18,15 +18,26 @@ const Signin = () => {
     };
 
     return (
-        <div>
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSignUp}>
-                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                <button type="submit">Sign Up</button>
+        <div className="signup-container"> {/* ✅ Matches CSS */}
+            <form className="signup-form"> {/* ✅ Matches CSS */}
+                <h2>Sign Up</h2>
+
+                <div className="form-control">
+                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                </div>
+
+                <div className="form-control">
+                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                </div>
+
+                <button type="submit" className="signup-button">Sign Up</button>
+
+                {error && <p className="error-message">{error}</p>}
+
+                <p className="alternative-action">
+                    Already have an account? <a href="/login">Login</a>
+                </p>
             </form>
-            {error && <p>{error}</p>}
-            <p>Already have an account? <a href="/login">Login</a></p>
         </div>
     );
 };
