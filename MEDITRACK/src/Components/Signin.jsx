@@ -1,33 +1,31 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../Redux/Auth";
+import { signUp } from "../Redux/Auth";
 
-const Login = () => {
+const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error } = useSelector((state) => state);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
-    navigate("/dashboard"); // Redirect to Dashboard after login
+    dispatch(signUp({ email, password }));
+    navigate("/login");
   };
 
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSignUp}>
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
       </form>
-      {error && <p>{error}</p>}
-      <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+      <p>Already have an account? <a href="/login">Login</a></p>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
