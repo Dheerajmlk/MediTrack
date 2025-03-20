@@ -1,83 +1,50 @@
-import { Alert } from "@/components/ui/alert";
-import { AlertDescription } from "@/components/ui/alert";
-import { AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Eye } from "lucide-react";
-import { EyeOff } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/Login.css"
 
-export default function Login() {
-  const [showPassword, setShowPassword] = useState(false);
+export default function Login({ setIsAuthenticated }) {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (password === "12345") {
+            setIsAuthenticated(true); // Mark user as logged in
+            navigate("/dashboard"); // Redirect to dashboard
+        } else {
+            alert("Incorrect password. Try again.");
+        }
+    };
 
-  const [password, setPassword] = useState("");
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  return (
-    <div className="flex min-h-screen bg-gray-50 dark:bg-black">
-      <div className="m-auto w-full max-w-md p-6 bg-white dark:bg-gray-900 shadow rounded-lg">
-        <h1 className="text-xl font-semibold text-gray-700 dark:text-white">
-          Login
-        </h1>
-
-        <div className="mt-4">
-          <Input
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-            className="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
-          />
+    return (
+        <div className="login-container">
+            <div className="login-form">
+                <h2>MediTrack</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Username</label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Enter username"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter password"
+                        />
+                    </div>
+                    <button type="submit" className="login-button">
+                        Login
+                    </button>
+                </form>
+            </div>
         </div>
-
-        <div className="mt-4">
-          <div className="flex items-center">
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
-            />
-            <button
-              type="button"
-              className="ml-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? (
-                <EyeOff className="w-5 h-5" />
-              ) : (
-                <Eye className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-6">
-          <Button className="w-full rounded-md bg-indigo-600 py-2 px-4 text-white hover:bg-indigo-700 dark:hover:bg-indigo-800">
-            Login
-          </Button>
-        </div>
-        <div className="mt-6">
-          <Button className="w-full rounded-md bg-blue-600 py-2 px-4 text-white hover:bg-blue-700 dark:hover:bg-blue-800">
-            Create Account
-          </Button>
-        </div>
-
-        <div className="mt-4 flex justify-between">
-          <Alert>
-            <AlertTitle>Need help?</AlertTitle>
-            <AlertDescription>Contact support for assistance.</AlertDescription>
-          </Alert>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }

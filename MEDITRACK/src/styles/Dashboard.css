@@ -1,0 +1,101 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: #007bff;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.sidebar .logout {
+    color: red;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: #f4f4f4;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.dashboard-widgets {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.medication-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.medication-card h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.medication-card p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.taken-btn {
+    background: green;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.snooze-btn {
+    background: orange;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.chart-container {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
