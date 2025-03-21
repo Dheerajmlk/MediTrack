@@ -63,7 +63,7 @@ const Dashboard = () => {
 
     
       <section className="text-center py-16 bg-gray-50">
-        <h3 className="text-2xl font-bold">Join the Mango Health Team</h3>
+        <h3 className="text-2xl font-bold">Join the MediTrack Team</h3>
         <p className="text-gray-600 mt-2">
           We foster an inclusive community to improve healthcare services.
         </p>
@@ -74,7 +74,7 @@ const Dashboard = () => {
 
      
       <footer className="bg-gray-900 text-white text-center py-6">
-        <p>© 2025 Mango Health. All Rights Reserved.</p>
+        <p>© 2025 MediTrack. All Rights Reserved.</p>
       </footer>
     </div>
   )
