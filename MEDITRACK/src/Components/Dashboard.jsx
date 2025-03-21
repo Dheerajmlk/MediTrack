@@ -3,7 +3,6 @@ import "../styles/Dashboard.css"; // Optional for extra styles
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      {/* Hero Section */}
       <section className="hero bg-gradient-to-r from-blue-100 to-yellow-100 flex items-center justify-center text-center py-20 px-6">
         <div className="max-w-4xl">
           <h1 className="text-4xl font-bold text-blue-900">
@@ -19,7 +18,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* What We Do Section */}
+    
       <section className="services grid grid-cols-1 md:grid-cols-3 gap-6 py-16 px-8">
         {[
           { title: "Individualized Pharmacy Care", icon: "🏥" },
@@ -41,7 +40,6 @@ const Dashboard = () => {
         ))}
       </section>
 
-      {/* Patients & Providers Section */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8 py-16 px-8">
         <div className="bg-blue-100 rounded-lg p-8">
           <h3 className="text-xl font-bold">Patients</h3>
@@ -63,7 +61,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* Join the Team Section */}
+    
       <section className="text-center py-16 bg-gray-50">
         <h3 className="text-2xl font-bold">Join the Mango Health Team</h3>
         <p className="text-gray-600 mt-2">
@@ -74,12 +72,12 @@ const Dashboard = () => {
         </button>
       </section>
 
-      {/* Footer */}
+     
       <footer className="bg-gray-900 text-white text-center py-6">
         <p>© 2025 Mango Health. All Rights Reserved.</p>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
