@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const firebaseURL = "https://userdatabase-f1b05-default-rtdb.firebaseio.com/users.json";
-
-// Initial State
+// Initial state
 const initialState = {
   user: null,
   error: null,
@@ -30,30 +28,66 @@ const authReducer = (state = initialState, action = {}) => {
   }
 };
 
-// Action Creators
-export const signUp = ({ email, password }) => {
-  return (dispatch) => {
-    axios
-      .post(firebaseURL, { email, password })
-      .then(() => dispatch({ type: SIGN_UP, payload: { email } }))
-      .catch(() => dispatch({ type: SET_ERROR, payload: "Sign-up failed" }));
-  };
-};
-
+// ✅ ADD THIS FUNCTION BELOW SIGNUP FUNCTION
 export const login = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(firebaseURL);
-      const users = Object.values(data || {});
-      const matchedUser = users.find((user) => user.email === email && user.password === password);
+      const { data } = await axios.get(
+        "https://userdatabase-f1b05-default-rtdb.firebaseio.com/users.json"
+      );
+
+      if (!data) {
+        dispatch({ type: "SET_ERROR", payload: "No users found" });
+        return;
+      }
+
+      const users = Object.entries(data).map(([id, user]) => ({ id, ...user }));
+      console.log("Users fetched from Firebase:", users); // ✅ Debugging
+
+      const matchedUser = users.find(
+        (user) => user.email === email && user.password === password
+      );
 
       if (matchedUser) {
-        dispatch({ type: LOGIN, payload: matchedUser });
+        dispatch({ type: "LOGIN", payload: matchedUser });
       } else {
-        dispatch({ type: SET_ERROR, payload: "Invalid email or password" });
+        dispatch({ type: "SET_ERROR", payload: "Invalid email or password" });
       }
-    } catch {
-      dispatch({ type: SET_ERROR, payload: "Login failed" });
+    } catch (error) {
+      console.error("Login error:", error);
+      dispatch({ type: "SET_ERROR", payload: "Login failed" });
+    }
+  };
+};
+
+export const signUp = ({ email, password }) => {
+  return async (dispatch) => {
+    try {
+      console.log("📨 Sending signup request to Firebase...");
+
+      const newUser = {
+        email,
+        password,
+        medications: {},
+        reminders: {},
+        adherence: {},
+      };
+
+      const res = await axios.post(
+        "https://userdatabase-f1b05-default-rtdb.firebaseio.com/users.json",
+        newUser
+      );
+
+      console.log("✅ Firebase response:", res.data);
+
+      dispatch({
+        type: "SIGN_UP",
+        payload: { id: res.data.name, ...newUser },
+      });
+
+    } catch (error) {
+      console.error("❌ SIGN-UP ERROR:", error.message);
+      dispatch({ type: "SET_ERROR", payload: "Sign-up failed" });
     }
   };
 };

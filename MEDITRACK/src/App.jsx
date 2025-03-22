@@ -4,6 +4,7 @@ import Store from "./Redux/Store";
 import Login from "./Components/Login";
 import Signin from "./Components/Signin";
 import MainLayout from "./Components/MainLayout";
+import IllnessReminder from "./Components/IllnessReminder";
 
 const PrivateRoute = ({ element }) => {
   const user = useSelector((state) => state.auth.user);
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           {/* Everything inside MainLayout is protected */}
           <Route path="/*" element={<PrivateRoute element={<MainLayout />} />} />
+          <Route path="/add-reminder" element={<PrivateRoute element={<IllnessReminder />} />} />
         </Routes>
       </Router>
     </Provider>

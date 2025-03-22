@@ -1,22 +1,37 @@
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useLocation } from "react-router-dom";
 import About from "./About";
 import Contact from "./Contact";
 import Dashboard from "./Dashboard";
 import Profile from "./Profile";
-import AddMedicine from "./AddMedicine";
+// import AddMedicine from "./AddMedicine";
 
 const MainLayout = () => {
+  const location = useLocation();
+  const navLinks = [
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/about", label: "About" },
+    { to: "/contact", label: "Contact" },
+    { to: "/profile", label: "Profile" },
+  ];
+
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-blue-900 text-white p-6 space-y-4 fixed top-0 left-0 h-full z-10">
-        <h2 className="text-2xl font-bold mb-6">MediTrack</h2>
-        <nav className="flex flex-col space-y-3">
-          <Link to="/dashboard" className="hover:text-yellow-300">Dashboard</Link>
-          <Link to="/about" className="hover:text-yellow-300">About</Link>
-          <Link to="/addmedicine" className="hover:text-yellow-300">Add Medicine</Link>
-          <Link to="/contact" className="hover:text-yellow-300">Contact</Link>
-          <Link to="/profile" className="hover:text-yellow-300">Profile</Link>
+      <aside className="w-64 bg-gradient-to-b from-blue-900 to-blue-700 text-white p-6 space-y-6 fixed top-0 left-0 h-full shadow-lg z-10">
+        <h2 className="text-3xl font-extrabold tracking-wide mb-8 text-yellow-300">MediTrack</h2>
+        <nav className="flex flex-col space-y-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`py-2 px-4 rounded-md transition-all duration-300 hover:bg-blue-800 hover:text-yellow-300 ${
+                location.pathname === link.to ? "bg-blue-800 text-yellow-300" : "text-white"
+              }`}
+            >
+              {link.label}
+            </Link>
+            
+          ))}
         </nav>
       </aside>
 
@@ -31,10 +46,12 @@ const MainLayout = () => {
               </div>
             }
           />
+          
           <Route path="/about" element={<div className="p-8"><About /></div>} />
-          <Route path="/addmedicine" element={<div className="p-8"><AddMedicine /></div>} />
+          {/* <Route path="/addmedicine" element={<div className="p-8"><AddMedicine /></div>} /> */}
           <Route path="/contact" element={<div className="p-8"><Contact /></div>} />
           <Route path="/profile" element={<div className="p-8"><Profile /></div>} />
+
         </Routes>
       </main>
     </div>

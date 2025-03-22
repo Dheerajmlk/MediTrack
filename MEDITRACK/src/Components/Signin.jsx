@@ -19,7 +19,8 @@ const Signin = () => {
 
     return (
         <div className="signup-container"> {/* ✅ Matches CSS */}
-            <form className="signup-form"> {/* ✅ Matches CSS */}
+            <form className="signup-form" onSubmit={handleSignUp}>
+
                 <h2>Sign Up</h2>
 
                 <div className="form-control">
