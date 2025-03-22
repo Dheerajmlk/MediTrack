@@ -19,7 +19,7 @@ const Profile = () => {
 
       <div className="mb-4">
         <label className="font-semibold text-gray-700">Username:</label>
-        <p className="text-gray-900">User</p> {/* You can replace this with a real name if added */}
+        <p className="text-gray-900">User</p> 
       </div>
 
       <div className="mb-6">

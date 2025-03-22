@@ -3,7 +3,6 @@ import About from "./About";
 import Contact from "./Contact";
 import Dashboard from "./Dashboard";
 import Profile from "./Profile";
-// import AddMedicine from "./AddMedicine";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -16,7 +15,6 @@ const MainLayout = () => {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
       <aside className="w-64 bg-gradient-to-b from-blue-900 to-blue-700 text-white p-6 space-y-6 fixed top-0 left-0 h-full shadow-lg z-10">
         <h2 className="text-3xl font-extrabold tracking-wide mb-8 text-yellow-300">MediTrack</h2>
         <nav className="flex flex-col space-y-4">
@@ -34,8 +32,6 @@ const MainLayout = () => {
           ))}
         </nav>
       </aside>
-
-      {/* Content Area */}
       <main className="ml-64 flex-1 bg-gray-50 h-screen overflow-y-auto">
         <Routes>
           <Route
@@ -46,12 +42,10 @@ const MainLayout = () => {
               </div>
             }
           />
-          
           <Route path="/about" element={<div className="p-8"><About /></div>} />
           {/* <Route path="/addmedicine" element={<div className="p-8"><AddMedicine /></div>} /> */}
           <Route path="/contact" element={<div className="p-8"><Contact /></div>} />
           <Route path="/profile" element={<div className="p-8"><Profile /></div>} />
-
         </Routes>
       </main>
     </div>
