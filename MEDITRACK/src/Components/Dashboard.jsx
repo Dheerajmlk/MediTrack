@@ -74,14 +74,9 @@ const Dashboard = () => {
           </div>
         ))}
       </section>
-
-      {/* Reminders Section */}
       <section className="py-10 px-8 bg-yellow-50 rounded-lg shadow-inner mt-6">
         <h2 className="text-2xl font-bold text-yellow-800 mb-6">Medication Reminders</h2>
-
-        {/* Grid with Left (Pending) and Right (Taken) */}
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Pending */}
           <div>
             <h3 className="text-xl font-semibold mb-4 text-yellow-800">Upcoming</h3>
             <ul className="space-y-3 text-yellow-900">

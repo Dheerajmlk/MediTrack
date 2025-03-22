@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import illnessData from "../assets/illness_medicine_data.json"; // Make sure your JSON is in this path
+import illnessData from "../assets/illness_medicine_data.json"; 
 
 const IllnessReminder = () => {
   const user = useSelector((state) => state.auth.user);
@@ -11,7 +11,6 @@ const IllnessReminder = () => {
   const [time, setTime] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Load medicines based on selected illness
   useEffect(() => {
     if (illness && illnessData[illness]) {
       setMedOptions(illnessData[illness]);

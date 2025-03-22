@@ -7,17 +7,15 @@ import "../styles/Login.css";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, user } = useSelector((state) => state.auth); // ✅ get user from Redux
+  const { error, user } = useSelector((state) => state.auth); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
-    // ❌ Don't navigate immediately
   };
 
-  // ✅ Redirect after successful login
   useEffect(() => {
     if (user) {
       navigate("/dashboard");
