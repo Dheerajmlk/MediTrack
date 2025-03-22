@@ -14,11 +14,11 @@ const Signin = () => {
     const handleSignUp = (e) => {
         e.preventDefault();
         dispatch(signUp({ email, password }));
-        navigate("/dashboard"); // ✅ Redirect to Dashboard after sign-up
+        navigate("/dashboard"); 
     };
 
     return (
-        <div className="signup-container"> {/* ✅ Matches CSS */}
+        <div className="signup-container"> 
             <form className="signup-form" onSubmit={handleSignUp}>
 
                 <h2>Sign Up</h2>

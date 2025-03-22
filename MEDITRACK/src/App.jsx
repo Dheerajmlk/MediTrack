@@ -18,7 +18,6 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signin" element={<Signin />} />
-          {/* Everything inside MainLayout is protected */}
           <Route path="/*" element={<PrivateRoute element={<MainLayout />} />} />
           <Route path="/add-reminder" element={<PrivateRoute element={<IllnessReminder />} />} />
         </Routes>

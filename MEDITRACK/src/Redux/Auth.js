@@ -1,18 +1,14 @@
 import axios from "axios";
-
-// Initial state
 const initialState = {
   user: null,
   error: null,
 };
 
-// Action Types
 const SIGN_UP = "SIGN_UP";
 const LOGIN = "LOGIN";
 const SET_ERROR = "SET_ERROR";
 const LOGOUT = "LOGOUT";
 
-// Reducer
 const authReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SIGN_UP:
@@ -28,7 +24,6 @@ const authReducer = (state = initialState, action = {}) => {
   }
 };
 
-// ✅ ADD THIS FUNCTION BELOW SIGNUP FUNCTION
 export const login = ({ email, password }) => {
   return async (dispatch) => {
     try {
@@ -42,7 +37,7 @@ export const login = ({ email, password }) => {
       }
 
       const users = Object.entries(data).map(([id, user]) => ({ id, ...user }));
-      console.log("Users fetched from Firebase:", users); // ✅ Debugging
+      console.log("Users fetched from Firebase:", users); 
 
       const matchedUser = users.find(
         (user) => user.email === email && user.password === password

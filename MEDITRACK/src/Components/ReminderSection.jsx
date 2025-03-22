@@ -14,7 +14,6 @@ const ReminderSection = ({ reminders, onMarkAsTaken }) => {
 
   return (
     <div className="grid md:grid-cols-2 gap-6 px-6 py-6">
-      {/* Pending Reminders */}
       <section>
         <h2 className="text-xl font-bold text-blue-800 mb-2">Upcoming Reminders</h2>
         {Object.keys(pending).length === 0 ? (
@@ -34,8 +33,6 @@ const ReminderSection = ({ reminders, onMarkAsTaken }) => {
           ))
         )}
       </section>
-
-      {/* Taken Reminders */}
       <section>
         <h2 className="text-xl font-bold text-green-700 mb-2">Taken Medications</h2>
         {Object.keys(taken).length === 0 ? (
