@@ -106,8 +106,6 @@ const Dashboard = () => {
               )}
             </ul>
           </div>
-
-          {/* Taken */}
           <div>
             <h3 className="text-xl font-semibold mb-4 text-green-700">Taken</h3>
             <ul className="space-y-3 text-green-900">
@@ -127,8 +125,6 @@ const Dashboard = () => {
             </ul>
           </div>
         </div>
-
-        {/* Illness-based reminder form */}
         <div className="mt-12">
           <IllnessReminder setReminders={setReminders} />
         </div>
